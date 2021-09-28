@@ -28,4 +28,8 @@ jobs:
       - run: |
           ls -lha
       - run: |
+          ls -lha /home/runner/work/test-repo/test-repo/logstash-7.15.0
+      - run: |
+          LOGSTASH_SOURCE=1 LOGSTASH_PATH=/home/runner/work/test-repo/test-repo/logstash-7.15.0 bundle install
+      - run: |
           LOGSTASH_SOURCE=1 LOGSTASH_PATH=/home/runner/work/test-repo/test-repo/logstash-7.15.0 bundle exec rake vendor
