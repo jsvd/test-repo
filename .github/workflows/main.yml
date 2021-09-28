@@ -36,8 +36,8 @@ jobs:
           LOGSTASH_SOURCE: 1
           LOGSTASH_PATH: /home/runner/work/test-repo/test-repo/logstash-7.15.0
         run: bundle exec rake vendor
-      - run: |
-          gem build *.gemspec
-          gem push -V --backtrace --debug --verbose *.gem
-        env:
+      - env:
+          LOGSTASH_SOURCE: 1
+          LOGSTASH_PATH: /home/runner/work/test-repo/test-repo/logstash-7.15.0
           GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+        run: bundle exec rake publish_gem
