@@ -1,3 +1,6 @@
+## 0.0.3
+  - Third patch version
+
 ## 0.0.2
   - Seconond patch version
 
