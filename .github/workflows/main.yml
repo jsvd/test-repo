@@ -50,5 +50,5 @@ jobs:
           LOGSTASH_PATH: /home/runner/work/test-repo/test-repo/logstash-7.15.0
         run: bundle exec rake vendor
       - run: |
-        gem build *.gemspec
-        gem push -V --backtrace --debug --verbose *.gem
+          gem build *.gemspec
+          gem push -V --backtrace --debug --verbose *.gem
