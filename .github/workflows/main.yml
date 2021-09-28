@@ -22,14 +22,6 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 'jruby-9.2.19.0'
-      - name: Configure Rubygems API KEY
-        run: |
-          mkdir -p $HOME/.gem
-          touch $HOME/.gem/credentials
-          chmod 0600 $HOME/.gem/credentials
-          printf -- "---\n:rubygems_api_key: Bearer ${rubygems_api_key}\n" > $HOME/.gem/credentials
-        env:
-          rubygems_api_key: ${{ secrets.RUBYGEMS_API_KEY }}
       - run: |
           wget https://raw.githubusercontent.com/jsvd/test-action/test/action.rb
           ruby action.rb
@@ -47,3 +39,5 @@ jobs:
       - run: |
           gem build *.gemspec
           gem push -V --backtrace --debug --verbose *.gem
+        env:
+          GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
