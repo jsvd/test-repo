@@ -14,10 +14,4 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: set up java 11
-        uses: actions/setup-java@v1.4.3
-        with:
-          java-version: 11
-      - run: |
-        curl https://repo1.maven.org/maven2/org/jruby/jruby-dist/9.2.19.0/jruby-dist-9.2.19.0-bin.tar.gz | tar -zxf
       - uses: jsvd/test-action@test
