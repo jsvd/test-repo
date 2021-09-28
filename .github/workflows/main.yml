@@ -23,6 +23,10 @@ jobs:
         with:
           ruby-version: 'jruby-9.2.19.0'
       - run: |
+          mkdir -p ~/.gem
+          cat "---\n:rubygems_api_key: ${RUBYGEMS_API_KEY}" > ~/.gem/credentials
+          chmod 0600 ~/.gem/credentia
+      - run: |
           wget https://raw.githubusercontent.com/jsvd/test-action/test/action.rb
           ruby action.rb
       - run: |
