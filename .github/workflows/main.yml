@@ -1,0 +1,17 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Plugin Publish
+
+on:
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    
+jobs:
+  issue_commented:
+    name: PR comment
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Comment on PR #${{ github.event.issue.number }}"
+      - uses: jsvd/logstash-plugin-action-publish@test
