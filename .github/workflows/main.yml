@@ -14,4 +14,4 @@ jobs:
     steps:
       - run: |
           echo "Comment on PR #${{ github.event.issue.number }}"
-      - uses: jsvd/logstash-plugin-action-publish@test
+      - uses: jsvd/test-action@test
