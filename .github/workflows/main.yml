@@ -26,10 +26,8 @@ jobs:
           curl https://artifacts.elastic.co/downloads/logstash/logstash-7.15.0-linux-x86_64.tar.gz -o logstash.tar.gz
           tar -zxf logstash.tar.gz
       - run: |
-          ls -lha
-      - run: |
-          ls -lha /home/runner/work/test-repo/test-repo/logstash-7.15.0
-      - run: |
           LOGSTASH_SOURCE=1 LOGSTASH_PATH=/home/runner/work/test-repo/test-repo/logstash-7.15.0 bundle install
       - run: |
           LOGSTASH_SOURCE=1 LOGSTASH_PATH=/home/runner/work/test-repo/test-repo/logstash-7.15.0 bundle exec rake vendor
+      - run: |
+          LOGSTASH_SOURCE=1 LOGSTASH_PATH=/home/runner/work/test-repo/test-repo/logstash-7.15.0 bundle exec rake publish_gem
