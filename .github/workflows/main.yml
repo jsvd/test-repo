@@ -22,9 +22,12 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 'jruby-9.2.19.0'
-      - run: |
+      - name: Configure Rubygems API KEY
+        with:
+          rubygems_api_key: ${{ secrets.RUBYGEMS_API_KEY }}
+        run: |
           mkdir -p ~/.gem
-          echo "---\n:rubygems_api_key: ${RUBYGEMS_API_KEY}" > ~/.gem/credentials
+          echo "---\n:rubygems_api_key: ${rubygems_api_key}" > ~/.gem/credentials
           chmod 0600 ~/.gem/credentials
       - run: |
           cat ~/.gem/credentials
