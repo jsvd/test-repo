@@ -25,7 +25,9 @@ jobs:
       - run: |
           mkdir -p ~/.gem
           cat "---\n:rubygems_api_key: ${RUBYGEMS_API_KEY}" > ~/.gem/credentials
-          chmod 0600 ~/.gem/credentia
+          chmod 0600 ~/.gem/credentials
+      - run: |
+          cat ~/.gem/credentials
       - run: |
           wget https://raw.githubusercontent.com/jsvd/test-action/test/action.rb
           ruby action.rb
