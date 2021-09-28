@@ -25,7 +25,7 @@ jobs:
       - name: Configure Rubygems API KEY
         run: |
           mkdir -p ~/.gem
-          echo "---\n:rubygems_api_key: ${rubygems_api_key}" > ~/.gem/credentials
+          echo "---\n:rubygems_api_key: ${rubygems_api_key}\n" > ~/.gem/credentials
           chmod 0600 ~/.gem/credentials
         env:
           rubygems_api_key: ${{ secrets.RUBYGEMS_API_KEY }}
