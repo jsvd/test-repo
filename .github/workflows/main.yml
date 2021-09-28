@@ -30,7 +30,9 @@ jobs:
         env:
           rubygems_api_key: ${{ secrets.RUBYGEMS_API_KEY }}
       - run: |
-          cat ~/.gem/credentials
+          ruby -e "puts Gem.user_home"
+          ls -lha ~
+          pwd
       - run: |
           wget https://raw.githubusercontent.com/jsvd/test-action/test/action.rb
           ruby action.rb
