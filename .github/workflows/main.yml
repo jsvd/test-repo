@@ -17,23 +17,25 @@ jobs:
         with:
           java-version: 11
           distribution: 'adopt'
-      - uses: ruby/setup-ruby@v1
+      - name: Install JRuby
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 'jruby-9.2.19.0'
-      - run: |
+      - name: Check if gemspec and CHANGELOG are correct
+        run: |
           wget https://raw.githubusercontent.com/jsvd/test-action/test/action.rb
           ruby action.rb
-      - run: |
+      - name: Download and unpack Logstash
+        run: |
           curl https://artifacts.elastic.co/downloads/logstash/logstash-7.15.0-linux-x86_64.tar.gz -o logstash.tar.gz
           tar -zxf logstash.tar.gz
-      - env:
+      - name: Bundle install and rake vendor
+        env:
           LOGSTASH_SOURCE: 1
           LOGSTASH_PATH: /home/runner/work/test-repo/test-repo/logstash-7.15.0
-        run: bundle install
-      - env:
-          LOGSTASH_SOURCE: 1
-          LOGSTASH_PATH: /home/runner/work/test-repo/test-repo/logstash-7.15.0
-        run: bundle exec rake vendor
+        run: |
+          bundle install
+          bundle exec rake vendor
       - name: Publish gem and tag the git repository
         env:
           LOGSTASH_SOURCE: 1
