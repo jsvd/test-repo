@@ -24,7 +24,7 @@ jobs:
           ruby-version: 'jruby-9.2.19.0'
       - run: |
           mkdir -p ~/.gem
-          cat "---\n:rubygems_api_key: ${RUBYGEMS_API_KEY}" > ~/.gem/credentials
+          echo "---\n:rubygems_api_key: ${RUBYGEMS_API_KEY}" > ~/.gem/credentials
           chmod 0600 ~/.gem/credentials
       - run: |
           cat ~/.gem/credentials
