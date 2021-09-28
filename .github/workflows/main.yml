@@ -23,7 +23,7 @@ jobs:
         with:
           ruby-version: 'jruby-9.2.19.0'
       - run: |
-          curl https://artifacts.elastic.co/downloads/logstash/logstash-7.15.0-linux-x86_64.tar.gz -O logstash.tgz
+          curl https://artifacts.elastic.co/downloads/logstash/logstash-7.15.0-linux-x86_64.tar.gz -o logstash.tgz
           tar -zxf logstash.tar.gz -C logstash
       - run: |
           ls -lha
