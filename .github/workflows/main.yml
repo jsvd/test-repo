@@ -41,7 +41,8 @@ jobs:
       - name: Download and unpack Logstash
         run: |
           curl https://artifacts.elastic.co/downloads/logstash/logstash-${{ github.event.inputs.logstash}}-linux-x86_64.tar.gz -o logstash.tar.gz
-          tar -zxf logstash.tar.gz -C logstash
+          mkdir -p logstash
+          tar -zxf logstash.tar.gz -C logstash --strip-components=1
       - name: Bundle install and rake vendor
         env:
           LOGSTASH_SOURCE: 1
