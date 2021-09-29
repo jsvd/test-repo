@@ -5,6 +5,14 @@ name: Plugin Publish
 on:
   workflow_dispatch:
     inputs:
+      plugin:
+        description: 'Plugin to publish'
+        required: true
+        default: 'elastic/logstash-output-elasticsearch'
+      branch:
+        description: 'Branch to publish from'
+        required: true
+        default: 'master'
       logstash:
         description: 'Version of Logstash'
         required: true
@@ -25,6 +33,10 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+        with:
+          repository: ${{ github.event.inputs.plugin }}
+          ref: ${{ github.event.inputs.branch }}
+          path: .
       - name: set up java
         uses: actions/setup-java@v2
         with:
