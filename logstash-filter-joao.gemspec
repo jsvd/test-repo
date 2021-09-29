@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'logstash-filter-joao'
-  s.version       = '0.0.4'
+  s.version       = '0.0.5'
   s.licenses      = ['Apache-2.0']
   s.summary       = 'this is a test gem please ignore it'
   s.description   = ''

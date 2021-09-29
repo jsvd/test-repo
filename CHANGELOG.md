@@ -1,3 +1,6 @@
+## 0.0.5
+  - Fifth patch version
+
 ## 0.0.4
   - Fourth patch version
 
