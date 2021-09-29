@@ -28,7 +28,7 @@ on:
 
 jobs:
   issue_commented:
-    name: PR comment
+    name: Publish ${{ github.event.inputs.plugin }}
     runs-on: ubuntu-latest
     steps:
       - name: checkout
