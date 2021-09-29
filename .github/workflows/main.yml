@@ -4,6 +4,19 @@ name: Plugin Publish
 
 on:
   workflow_dispatch:
+    inputs:
+      logstash:
+        description: 'Version of Logstash'
+        required: true
+        default: '7.15.0'
+      jruby:
+        description: 'Version of JRuby'
+        required: true
+        default: '9.2.19.0'
+      java:
+        description: 'Version of Java'
+        required: true
+        default: '11'
 
 jobs:
   issue_commented:
@@ -12,33 +25,33 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: set up java 11
+      - name: set up java
         uses: actions/setup-java@v2
         with:
-          java-version: 11
+          java-version: ${{ github.event.inputs.java }}
           distribution: 'adopt'
       - name: Install JRuby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 'jruby-9.2.19.0'
+          ruby-version: 'jruby-${{ github.event.inputs.jruby }}'
       - name: Check if gemspec and CHANGELOG are correct
         run: |
           wget https://raw.githubusercontent.com/jsvd/test-action/test/action.rb
           ruby action.rb
       - name: Download and unpack Logstash
         run: |
-          curl https://artifacts.elastic.co/downloads/logstash/logstash-7.15.0-linux-x86_64.tar.gz -o logstash.tar.gz
-          tar -zxf logstash.tar.gz
+          curl https://artifacts.elastic.co/downloads/logstash/logstash-${{ github.event.inputs.logstash}}-linux-x86_64.tar.gz -o logstash.tar.gz
+          tar -zxf logstash.tar.gz -C logstash
       - name: Bundle install and rake vendor
         env:
           LOGSTASH_SOURCE: 1
-          LOGSTASH_PATH: /home/runner/work/test-repo/test-repo/logstash-7.15.0
+          LOGSTASH_PATH: /home/runner/work/test-repo/test-repo/logstash
         run: |
           bundle install
           bundle exec rake vendor
       - name: Publish gem and tag the git repository
         env:
           LOGSTASH_SOURCE: 1
-          LOGSTASH_PATH: /home/runner/work/test-repo/test-repo/logstash-7.15.0
+          LOGSTASH_PATH: /home/runner/work/test-repo/test-repo/logstash
           GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
         run: bundle exec rake publish_gem
