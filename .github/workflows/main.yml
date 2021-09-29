@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Plugin Publish ${{ github.event.inputs.plugin }}
+name: Plugin Publish
 
 on:
   workflow_dispatch:
