@@ -27,7 +27,7 @@ on:
         default: '11'
 
 jobs:
-  issue_commented:
+  publish:
     name: Publish ${{ github.event.inputs.plugin }}
     runs-on: ubuntu-latest
     steps:
