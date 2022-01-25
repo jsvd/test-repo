@@ -82,7 +82,7 @@ puts "next version is #{next_version}"
 def bump_gemspec_version!(current_version, next_version)
   gemspec_path = Dir.glob("*.gemspec").first
   source = IO.read(gemspec_path)
-  source.gsub!(current_version, next_version)
+  source.gsub!(current_version.to_s, next_version.to_s)
   IO.write(gemspec_path, source)
 end
 
