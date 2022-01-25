@@ -48,6 +48,8 @@ end
 
 event = JSON.parse(File.read(ENV['GITHUB_EVENT_PATH']))
 
+puts event.inspect
+
 event_name = ENV['GITHUB_EVENT_NAME']
 body = event["comment"]["body"]
 
