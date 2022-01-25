@@ -79,4 +79,17 @@ end
 next_version = compute_next_version(gemspec_version, bump_type)
 puts "next version is #{next_version}"
 
-puts "✅ We're all set up! Starting publishing now"
+def bump_gemspec_version!(current_version, next_version)
+  gemspec_path = Dir.glob("*.gemspec").first
+  source = IO.read(gemspec_path)
+  source.gsub!(current_version, next_version)
+  IO.write(gemspec_path, source)
+end
+
+bump_gemspec_version!(gemspec_version, next_version)
+gemspec_path = Dir.glob("*.gemspec").first
+
+`git commit #{gemspec_path} -m "bump to #{new_version}"`
+`git push`
+
+puts "✅ All done!"
