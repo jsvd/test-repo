@@ -28,5 +28,5 @@ jobs:
         ruby-version: 2.7
     - uses: actions/checkout@v2
     - run: ruby update_pr.rb
-    - run: gh pr checkout ${{ github.event.issue.pull_request.number }}
+    - run: gh pr checkout ${{ github.event.issue.number }}
     - run: git push
