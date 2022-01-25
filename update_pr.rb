@@ -89,7 +89,14 @@ end
 bump_gemspec_version!(gemspec_version, next_version)
 gemspec_path = Dir.glob("*.gemspec").first
 
-`git commit #{gemspec_path} -m "bump to #{next_version}"`
+def edit_changelog!(next_version)
+  source = IO.read("CHANGELOG.md")
+  IO.write("CHANGELOG.md", "###{next_version.to_s}\n  - TODO\n#{source}")
+end
+
+edit_changelog!(next_version)
+
+`git commit -a -m "bump to #{next_version}"`
 `git push`
 
 puts "✅ All done!"
