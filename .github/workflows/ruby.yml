@@ -20,7 +20,7 @@ on:
 jobs:
   prep_for_release:
     name: PR comment
-    if: ${{ github.event.issue.pull_request } && startsWith(github.event.comment.body, 'bump ')
+    if: ${{ github.event.issue.pull_request }} && startsWith(github.event.comment.body, 'bump ')
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
