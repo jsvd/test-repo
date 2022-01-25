@@ -100,6 +100,5 @@ end
 edit_changelog!(next_version)
 
 `git commit -a -m "bump to #{next_version}"`
-`git push`
 
 puts "✅ All done!"
