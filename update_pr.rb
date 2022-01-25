@@ -61,17 +61,20 @@ puts "Current gemspec version in the gemspec is: #{gemspec_version}"
 
 published_versions = fetch_git_versions()
 
+=begin
 if published_versions.include?(gemspec_version)
   $stderr.puts "❌ A git tag \"v#{gemspec_version}\" already exists for version #{gemspec_version}"
   followup_notice()
   exit(1)
 end
 
+
 if rubygem_published?
   $stderr.puts "❌ Version \"#{gemspec_version}\" is already published on Rubygems.org"
   followup_notice()
   exit(1)
 end
+=end
 
 next_version = compute_next_version(gemspec_version, bump_type)
 puts "next version is #{next_version}"
