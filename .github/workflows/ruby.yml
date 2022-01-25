@@ -23,10 +23,10 @@ jobs:
     if: ${{ github.event.issue.pull_request }} && startsWith(github.event.comment.body, 'bump ')
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.7
+    - uses: actions/checkout@v2
+    - run: gh pr checkout ${{ github.event.pull_request.number }}
     - run: ruby update_pr.rb
+    - run: git push
