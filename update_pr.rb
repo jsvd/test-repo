@@ -43,6 +43,9 @@ def compute_next_version(version, bump_type)
   Gem::Version.new([major, minor, patch].join("."))
 end
 
+`git config --local user.email "$(git log --format='%ae' HEAD)"`
+`git config --local user.name "$(git log --format='%an' HEAD)"`
+
 event = JSON.parse(File.read(ENV['GITHUB_EVENT_PATH']))
 
 event_name = ENV['GITHUB_EVENT_NAME']
