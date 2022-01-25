@@ -56,7 +56,7 @@ if match.nil?
   exit(1)
 end
 
-gemspec_version = find_gemspec_version()
+gemspec_version = Gem::Version.new(find_gemspec_version())
 puts "Current gemspec version in the gemspec is: #{gemspec_version}"
 
 published_versions = fetch_git_versions()
