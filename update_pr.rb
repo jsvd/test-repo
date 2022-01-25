@@ -89,7 +89,7 @@ end
 bump_gemspec_version!(gemspec_version, next_version)
 gemspec_path = Dir.glob("*.gemspec").first
 
-`git commit #{gemspec_path} -m "bump to #{new_version}"`
+`git commit #{gemspec_path} -m "bump to #{next_version}"`
 `git push`
 
 puts "✅ All done!"
