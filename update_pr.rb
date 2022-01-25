@@ -94,7 +94,7 @@ gemspec_path = Dir.glob("*.gemspec").first
 
 def edit_changelog!(next_version)
   source = IO.read("CHANGELOG.md")
-  IO.write("CHANGELOG.md", "###{next_version.to_s}\n  - TODO\n#{source}")
+  IO.write("CHANGELOG.md", "## #{next_version.to_s}\n  - TODO\n#{source}")
 end
 
 edit_changelog!(next_version)
