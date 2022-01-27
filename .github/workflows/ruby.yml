@@ -8,7 +8,7 @@
 name: Ruby
 
 on:
-  issue_comment:
+#  issue_comment:
   workflow_dispatch:
     inputs:
       environment:
