@@ -1,6 +1,3 @@
-## 0.1.0
-  - TODO
-
 ## 0.0.5
   - Fifth patch version
 
