@@ -15,8 +15,9 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8 #install the python needed
-      - run: export BRANCH=$(echo "${{ github.event.inputs.string }}" | cut -d " " -f 3)
+      - run: |
+          echo "branch=$(echo "${{ github.event.inputs.string }}" | cut -d " " -f 3)" >> $GITHUB_ENV
       - name: execute py script # run the run.py to get the latest data
         run: pip install requests
       - name: execute py script # run the run.py to get the latest data
-        run: python devtools/backport $BRANCH ${{ github.event.issue.number }} --remote=origin --yes
+        run: python devtools/backport ${{ env.branch }} ${{ github.event.issue.number }} --remote=origin --yes
