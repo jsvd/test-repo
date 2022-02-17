@@ -1,7 +1,7 @@
 name: Backport PR to another branch
 on:
-  - issue_comment
-  - workflow_dispatch:
+  issue_comment:
+  workflow_dispatch:
     inputs:
       string:
         description: 'test string'
