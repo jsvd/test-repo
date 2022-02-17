@@ -6,7 +6,7 @@ jobs:
   pr_commented:
     # This job only runs for pull request comments
     name: PR comment
-    if: ${{ github.event.issue.pull_request }}
+    #if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo content
