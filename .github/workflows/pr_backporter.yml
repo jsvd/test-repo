@@ -1,5 +1,7 @@
 name: Backport PR to another branch
-on: issue_comment,workflow_dispatch
+on:
+  - issue_comment
+  - workflow_dispatch
 jobs:
   pr_commented:
     # This job only runs for pull request comments
