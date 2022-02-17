@@ -1,17 +1,12 @@
 name: Backport PR to another branch
 on:
   issue_comment:
-  workflow_dispatch:
-    inputs:
-      string:
-        description: 'test string'
-        type: string
-        required: true 
+
 jobs:
   pr_commented:
     # This job only runs for pull request comments
     name: PR comment
-    #if: ${{ github.event.issue.pull_request }}
+    if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo content
@@ -20,8 +15,8 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8 #install the python needed
-      - run: echo "${{ github.event.inputs.string }}" | cut -d " " -f 3
+      - run: export BRANCH=$(echo "${{ github.event.inputs.string }}" | cut -d " " -f 3)
       - name: execute py script # run the run.py to get the latest data
         run: pip install requests
       - name: execute py script # run the run.py to get the latest data
-        run: python run.py
+        run: python devtools/backport $BRANCH ${{ github.event.issue.number }} --remote=origin --yes
