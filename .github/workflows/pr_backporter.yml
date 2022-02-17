@@ -1,7 +1,12 @@
 name: Backport PR to another branch
 on:
   - issue_comment
-  - workflow_dispatch
+  - workflow_dispatch:
+    inputs:
+      string:
+        description: 'test string'
+        type: string
+        required: true 
 jobs:
   pr_commented:
     # This job only runs for pull request comments
@@ -15,6 +20,7 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8 #install the python needed
+      - run: echo $STRING | cut -d " " -f $N
       - name: execute py script # run the run.py to get the latest data
         run: pip install requests
       - name: execute py script # run the run.py to get the latest data
