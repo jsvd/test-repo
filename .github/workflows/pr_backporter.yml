@@ -8,7 +8,7 @@ jobs:
     name: PR comment
     if: ${{
       (github.event.issue.pull_request && startsWith(github.event.comment.body, '@logstashmachine backport')) ||
-      (github.actor == 'jsvd' || github.actor == 'meh')
+      (github.actor == 'yo' || github.actor == 'meh')
       }}
     runs-on: ubuntu-latest
     steps:
