@@ -8,7 +8,7 @@ import os
 import argparse
 from os.path import expanduser
 import re
-from subprocess import check_call, call, check_output
+from subprocess import check_call, call, check_output, run
 import requests
 import json
 
@@ -118,11 +118,13 @@ def create_pr(parser, args):
             commit_hashes = "{}".format(" ").join(args.commit_hashes)
 
         info("Cherry-picking {}".format(commit_hashes))
-        if call("git cherry-pick -x {}".format(commit_hashes), shell=True) != 0:
+        result = subprocess.run("git cherry-pick -x {}".format(commit_hashes), stdout=subprocess.PIPE)
+        if result.returncode != 0:
             info("Looks like you have cherry-pick errors.")
             info("Fix them, then run: ")
             info("    git cherry-pick --continue")
             info("    {} --continue".format(" ".join(sys.argv)))
+            info(result.stdout.decode('utf-8'))
             return 1
 
     if len(check_output("git status -s", shell=True).strip()) > 0:
