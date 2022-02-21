@@ -119,7 +119,7 @@ def create_pr(parser, args):
             commit_hashes = "{}".format(" ").join(args.commit_hashes)
 
         info("Cherry-picking {}".format(commit_hashes))
-        result = subprocess.run(["git", "cherry-pick", "-x", "commit_hashes"], stdout=subprocess.PIPE)
+        result = subprocess.run(["git", "cherry-pick", "-x", commit_hashes], stdout=subprocess.PIPE)
         if result.returncode != 0:
             info("Looks like you have cherry-pick errors.")
             info("Fix them, then run: ")
