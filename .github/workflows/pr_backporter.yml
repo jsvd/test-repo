@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: tspascoal/get-user-teams-membership@v1
         with: 
-          username: ${{ github.actor }]
+          username: ${{ github.actor }}
           organization: elastic
           team: logstash
       - if: ${{ steps.checkUserMember.outputs.isTeamMember == 'false' }}
