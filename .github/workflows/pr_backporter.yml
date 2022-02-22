@@ -20,6 +20,7 @@ jobs:
           username: ${{ github.actor }}
           organization: elastic
           team: logstash
+          GITHUB_TOKEN: ${{ secrets.READ_ORG_SECRET_JSVD }}
       - if: ${{ steps.checkUserMember.outputs.isTeamMember == 'false' }}
         run: exit 1
       - name: checkout repo content
