@@ -20,7 +20,8 @@ jobs:
           username: ${{ github.actor }]
           organization: elastic
           team: logstash
-      - if: ${{ steps.checkUserMember.outputs.isTeamMember == 'true' }}
+      - if: ${{ steps.checkUserMember.outputs.isTeamMember == 'false' }}
+        run: exit 1
       - name: checkout repo content
         uses: actions/checkout@v2
       - name: setup python
