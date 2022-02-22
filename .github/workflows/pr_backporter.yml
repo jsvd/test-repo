@@ -15,6 +15,12 @@ jobs:
       (github.actor == 'jsvd' || github.actor == 'meh')
     runs-on: ubuntu-latest
     steps:
+      - uses: tspascoal/get-user-teams-membership@v1
+        with: 
+          username: ${{ github.actor }]
+          organization: elastic
+          team: logstash
+      - if: ${{ steps.checkUserMember.outputs.isTeamMember == 'true' }}
       - name: checkout repo content
         uses: actions/checkout@v2
       - name: setup python
