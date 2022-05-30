@@ -18,7 +18,7 @@ jobs:
         with:
           text: ${{ github.event.comment.body }}
           regex: '^@logstashmachine backport (main|[0-9\.]+)$'
-      - if: ${{ steps.regex-match.outputs.group1 != '' }}
+      - if: ${{ steps.regex-match.outputs.group1 == '' }}
         run: exit 1
       - uses: tspascoal/get-user-teams-membership@v1
         with: 
